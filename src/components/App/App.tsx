@@ -8,13 +8,15 @@ function App() {
   return (
     <>
       <Search/>
-      <Routes>
-        <Route path='/'/>
-        <Route path='/search/:query/:page'/>
-        <Route path='/books/:id'/>
-        <Route path='/to-read'/>
-        <Route path='*'/>
-      </Routes>
+      <main>
+        <Routes>
+          <Route path='/'/>
+          <Route path='/search/:query/:page'/>
+          <Route path='/books/:id'/>
+          <Route path='/to-read'/>
+          <Route path='*'/>
+        </Routes>
+      </main>
     </>
   );
 }
