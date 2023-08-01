@@ -8,13 +8,15 @@ function handleError(res: Response): Promise<ApiBookVolume> {
   return res.json()
 }
 
-const getBooks = (query: string): Promise<BookVolume> => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}+subject:"fiction_science_fiction_general"`)
+const getBooks = (query: string, index: string): Promise<BookVolume> => {
+  const spacedQuery:string = query.split(' ').join('+')
+  console.log(spacedQuery)
+  return fetch(`https://www.googleapis.com/books/v1/volumes?q="${spacedQuery}"+subject:"fiction_science_fiction_general"&startIndex=${index === '0' ? 0 : parseInt(index)+10}`)
     .then(res => handleError(res))
     .then(data => ({
       kind: data.kind,
       totalItems: data.totalItems,
-      items: cleanup(data.items)
+      items: data.items ? cleanup(data.items) : []
     }))
 }
 

@@ -1,22 +1,41 @@
 import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
 import { getBooks } from '../../api'
+import { BookInfo } from "../../apiTypes";
 
 function Results () {
-  const [results, setResults] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(true)
   
+  type ResultsParams = {
+    index: string,
+    query: string;
+  };
+  
+  const {query, index} = useParams<ResultsParams>()
+  const [results, setResults] = useState<BookInfo[]>([])
+  const [total, setTotalItems] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+    
   useEffect(() => {
-    getBooks('heir to')
+    getBooks(query || '', index || '')
       .then(data => {
         setResults(data.items)
+        setTotalItems(data.totalItems)
         setIsLoading(false)
       })
-  }, [])
+  }, [query, index])
 
-  return (
-    <>
-      {!isLoading && results.map(result => <p key={result.id}>{result.title}{result.authors}{result.publisher}</p>)}
-    </>)
+  if (isLoading) {
+    return (<p>loading...</p>)
+  } else if (!results.length) {
+    return (<p>{`No results for ${query}`}</p>)
+  } else {
+    return (
+      <>
+        {results.map((result, mapIndex) => <p key={mapIndex}> {result.title}{result.authors}{result.publisher}</p>)}
+      </>
+    )
+  }
+
 }
 
 export default Results

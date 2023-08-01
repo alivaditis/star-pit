@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [inputValue, setInput] = useState('')
-  const [results, setResults] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -13,7 +12,7 @@ function Search() {
 
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
-    navigate(`/search/${inputValue}/1`)
+    navigate(`/search/${inputValue}/0`)
   }
 
   return (

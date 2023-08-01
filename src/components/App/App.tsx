@@ -11,8 +11,8 @@ function App() {
       <Search/>
       <main>
         <Routes>
-          <Route path='/' element={<Results/>}/>
-          <Route path='/search/:query/:page'/>
+          <Route path='/'/>
+          <Route path='/search/:query/:index' element={<Results/>}/>
           <Route path='/books/:id'/>
           <Route path='/to-read'/>
           <Route path='*'/>
