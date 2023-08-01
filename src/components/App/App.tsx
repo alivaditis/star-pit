@@ -2,10 +2,12 @@ import React from 'react';
 import {Routes, Route} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
+import Search from '../Search/Search';
 
 function App() {
   return (
     <>
+      <Search/>
       <Routes>
         <Route path='/'/>
         <Route path='/search/:query/:page'/>
