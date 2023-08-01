@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Search from '../Search/Search';
 import Results from '../Results/Results'
+import Book from '../Book/Book'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Routes>
           <Route path='/'/>
           <Route path='/search/:query/:index' element={<Results/>}/>
-          <Route path='/books/:id'/>
+          <Route path='/books/:id' element={<Book/>}/>
           <Route path='/to-read'/>
           <Route path='*'/>
         </Routes>

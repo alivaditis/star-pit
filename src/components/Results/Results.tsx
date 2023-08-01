@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { getBooks } from '../../api'
 import { BookInfo } from "../../apiTypes"
 import Card from '../Card/Card'
+import './Results.css'
 
 function Results () {
   
@@ -29,9 +30,10 @@ function Results () {
   if (isLoading) {
     return (<p>loading...</p>)
   } else if (results.length) {
-      return (<>
-        {results.map((book, mapIndex) => <Card key={mapIndex} {...book} />)}
-      </>)
+      return (
+      <div className='results-container'>
+        {results.map((book, mapIndex) => <Card key={book.id} {...book} />)}
+      </div>)
   } else {
       return (<p>{`No results for ${query}`}</p>)
   }

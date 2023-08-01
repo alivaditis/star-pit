@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.card-button {
+  margin-left: auto;
+}
+
+.card-image {
+  width: 96px;
+  height: auto;
+}
