@@ -1,10 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Search.css'
 import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [inputValue, setInput] = useState('')
+  const [results, setResults] = useState([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+
+  })
 
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
