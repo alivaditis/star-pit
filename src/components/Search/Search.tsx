@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import './Search.css'
 import { useNavigate } from "react-router-dom";
 
@@ -8,11 +8,11 @@ function Search() {
 
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
-    navigate(`/search/${inputValue}/1`)
+    navigate(`/search/${inputValue}/0`)
   }
 
   return (
-    <form className="search--form" name="search">
+    <form className="search--form" name="search" spellCheck={false}>
       <div className='search--container'>
         <input
           className='search--input'

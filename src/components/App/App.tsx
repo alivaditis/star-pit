@@ -3,6 +3,8 @@ import {Routes, Route} from 'react-router-dom'
 import logo from './logo.svg';
 import './App.css';
 import Search from '../Search/Search';
+import Results from '../Results/Results'
+import Book from '../Book/Book'
 
 function App() {
   return (
@@ -11,8 +13,8 @@ function App() {
       <main>
         <Routes>
           <Route path='/'/>
-          <Route path='/search/:query/:page'/>
-          <Route path='/books/:id'/>
+          <Route path='/search/:query/:index' element={<Results/>}/>
+          <Route path='/books/:id' element={<Book/>}/>
           <Route path='/to-read'/>
           <Route path='*'/>
         </Routes>
