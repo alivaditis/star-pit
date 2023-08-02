@@ -12,7 +12,7 @@ function Search() {
   }
 
   return (
-    <form className="search--form" name="search">
+    <form className="search--form" name="search" spellCheck={false}>
       <div className='search--container'>
         <input
           className='search--input'
