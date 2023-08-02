@@ -8,8 +8,8 @@ import './Results.css'
 function Results () {
   
   type ResultsParams = {
-    index: string,
-    query: string;
+    index: string | any;
+    query: string | any;
   };
   
   const {query, index} = useParams<ResultsParams>()
@@ -19,7 +19,7 @@ function Results () {
     
   useEffect(() => {
     setIsLoading(true)
-    getBooks(query || '', index || '')
+    getBooks(query, index)
       .then(data => {
         setResults(data.items)
         setTotalItems(data.totalItems)

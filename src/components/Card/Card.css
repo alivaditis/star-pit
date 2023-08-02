@@ -1,13 +1,18 @@
 .card {
   display: flex;
+  font-size: .8em;
   margin-bottom: 16px;
 }
 
 .card-button {
+  height: 32px;
+  width: 120px;
+  text-align: center;
   margin-left: auto;
 }
 
 .card-image {
   width: 96px;
-  height: auto;
-}
+  height: 144px;
+  margin-right: 16px;
+} 

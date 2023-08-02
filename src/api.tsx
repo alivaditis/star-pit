@@ -1,7 +1,7 @@
-import { ApiBookVolume, BookVolume, ApiBookInfo, BookInfo } from "./apiTypes"
+import { BookVolume, ApiBookInfo, BookInfo } from "./apiTypes"
 
 
-function handleError(res: Response): Promise<ApiBookVolume> {
+function handleError(res: Response) {
   if(!res.ok) {
     throw new Error(`HTTP Error: ${res.status} -- Please try again later`)
   }
@@ -9,18 +9,19 @@ function handleError(res: Response): Promise<ApiBookVolume> {
 }
 
 const getBooks = (query: string, index: string): Promise<BookVolume> => {
+  
   const spacedQuery:string = query.split(' ').join('+')
-  console.log(spacedQuery)
+
   return fetch(`https://www.googleapis.com/books/v1/volumes?q="${spacedQuery}"+subject:"fiction_science_fiction_general"&startIndex=${index === '0' ? 0 : parseInt(index)+10}&printType=books`)
     .then(res => handleError(res))
     .then(data => ({
       kind: data.kind,
       totalItems: data.totalItems,
-      items: data.items ? cleanup(data.items) : []
+      items: data.items ? cleanupBooks(data.items) : []
     }))
 }
 
-const cleanup = (apiBooks: ApiBookInfo[]): BookInfo[] => {
+const cleanupBooks = (apiBooks: ApiBookInfo[]): BookInfo[] => {
   return apiBooks.map(book => {
     return ({
       id: book.id,
@@ -37,4 +38,9 @@ const cleanup = (apiBooks: ApiBookInfo[]): BookInfo[] => {
   })
 }
 
-export { getBooks }
+const getBookDetails = (id: string): Promise<ApiBookInfo> => {
+  return fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
+    .then(res => handleError(res))
+  }
+
+export { getBooks, getBookDetails }
